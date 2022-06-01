@@ -1,0 +1,360 @@
+# Created on 2022-06-01T20:38:38.388
+java.lang.instrument.IllegalClassFormatException: Error while instrumenting sun/util/resources/cldr/provider/CLDRLocaleDataMetaInfo.
+
+# Created on 2022-06-01T20:38:38.903
+	at org.jacoco.agent.rt.internal_43f5073.CoverageTransformer.transform(CoverageTransformer.java:94)
+
+# Created on 2022-06-01T20:38:38.940
+	at java.instrument/java.lang.instrument.ClassFileTransformer.transform(ClassFileTransformer.java:244)
+
+# Created on 2022-06-01T20:38:39.000
+	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
+
+# Created on 2022-06-01T20:38:39.004
+	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:541)
+
+# Created on 2022-06-01T20:38:39.006
+	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
+
+# Created on 2022-06-01T20:38:39.010
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1103)
+
+# Created on 2022-06-01T20:38:39.012
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
+
+# Created on 2022-06-01T20:38:39.015
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
+
+# Created on 2022-06-01T20:38:39.016
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
+
+# Created on 2022-06-01T20:38:39.019
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClass(BuiltinClassLoader.java:621)
+
+# Created on 2022-06-01T20:38:39.021
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:632)
+
+# Created on 2022-06-01T20:38:39.023
+	at java.base/java.lang.Class.forName(Class.java:545)
+
+# Created on 2022-06-01T20:38:39.025
+	at java.base/java.util.ServiceLoader.loadProvider(ServiceLoader.java:859)
+
+# Created on 2022-06-01T20:38:39.026
+	at java.base/java.util.ServiceLoader$ModuleServicesLookupIterator.hasNext(ServiceLoader.java:1084)
+
+# Created on 2022-06-01T20:38:39.028
+	at java.base/java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1309)
+
+# Created on 2022-06-01T20:38:39.030
+	at java.base/java.util.ServiceLoader$3.hasNext(ServiceLoader.java:1393)
+
+# Created on 2022-06-01T20:38:39.032
+	at java.base/sun.util.cldr.CLDRLocaleProviderAdapter.lambda$new$0(CLDRLocaleProviderAdapter.java:86)
+
+# Created on 2022-06-01T20:38:39.034
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+
+# Created on 2022-06-01T20:38:39.036
+	at java.base/sun.util.cldr.CLDRLocaleProviderAdapter.<init>(CLDRLocaleProviderAdapter.java:85)
+
+# Created on 2022-06-01T20:38:39.038
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+
+# Created on 2022-06-01T20:38:39.040
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+
+# Created on 2022-06-01T20:38:39.042
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+
+# Created on 2022-06-01T20:38:39.044
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+
+# Created on 2022-06-01T20:38:39.046
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+
+# Created on 2022-06-01T20:38:39.049
+	at java.base/sun.util.locale.provider.LocaleProviderAdapter.forType(LocaleProviderAdapter.java:188)
+
+# Created on 2022-06-01T20:38:39.051
+	at java.base/sun.util.locale.provider.LocaleProviderAdapter.findAdapter(LocaleProviderAdapter.java:287)
+
+# Created on 2022-06-01T20:38:39.055
+	at java.base/sun.util.locale.provider.LocaleProviderAdapter.getAdapter(LocaleProviderAdapter.java:258)
+
+# Created on 2022-06-01T20:38:39.106
+	at java.base/java.text.NumberFormat.getInstance(NumberFormat.java:960)
+
+# Created on 2022-06-01T20:38:39.108
+	at java.base/java.text.NumberFormat.getNumberInstance(NumberFormat.java:518)
+
+# Created on 2022-06-01T20:38:39.109
+	at java.base/java.util.Scanner.useLocale(Scanner.java:1270)
+
+# Created on 2022-06-01T20:38:39.111
+	at java.base/java.util.Scanner.<init>(Scanner.java:543)
+
+# Created on 2022-06-01T20:38:39.113
+	at java.base/java.util.Scanner.<init>(Scanner.java:595)
+
+# Created on 2022-06-01T20:38:39.115
+	at java.base/java.util.Scanner.<init>(Scanner.java:581)
+
+# Created on 2022-06-01T20:38:39.117
+	at org.apache.maven.surefire.booter.PpidChecker$ProcessInfoConsumer.execute(PpidChecker.java:300)
+
+# Created on 2022-06-01T20:38:39.122
+	at org.apache.maven.surefire.booter.PpidChecker.windows(PpidChecker.java:193)
+
+# Created on 2022-06-01T20:38:39.124
+	at org.apache.maven.surefire.booter.PpidChecker.isProcessAlive(PpidChecker.java:102)
+
+# Created on 2022-06-01T20:38:39.126
+	at org.apache.maven.surefire.booter.ForkedBooter$2.run(ForkedBooter.java:213)
+
+# Created on 2022-06-01T20:38:39.128
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+
+# Created on 2022-06-01T20:38:39.131
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+
+# Created on 2022-06-01T20:38:39.133
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+
+# Created on 2022-06-01T20:38:39.135
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+
+# Created on 2022-06-01T20:38:39.137
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+
+# Created on 2022-06-01T20:38:39.139
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+# Created on 2022-06-01T20:38:39.141
+Caused by: java.io.IOException: Error while instrumenting sun/util/resources/cldr/provider/CLDRLocaleDataMetaInfo.
+
+# Created on 2022-06-01T20:38:39.144
+	at org.jacoco.agent.rt.internal_43f5073.core.instr.Instrumenter.instrumentError(Instrumenter.java:159)
+
+# Created on 2022-06-01T20:38:39.146
+	at org.jacoco.agent.rt.internal_43f5073.core.instr.Instrumenter.instrument(Instrumenter.java:109)
+
+# Created on 2022-06-01T20:38:39.148
+	at org.jacoco.agent.rt.internal_43f5073.CoverageTransformer.transform(CoverageTransformer.java:92)
+
+# Created on 2022-06-01T20:38:39.149
+	... 42 more
+
+# Created on 2022-06-01T20:38:39.151
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 61
+
+# Created on 2022-06-01T20:38:39.153
+	at org.jacoco.agent.rt.internal_43f5073.asm.ClassReader.<init>(ClassReader.java:195)
+
+# Created on 2022-06-01T20:38:39.155
+	at org.jacoco.agent.rt.internal_43f5073.asm.ClassReader.<init>(ClassReader.java:176)
+
+# Created on 2022-06-01T20:38:39.157
+	at org.jacoco.agent.rt.internal_43f5073.asm.ClassReader.<init>(ClassReader.java:162)
+
+# Created on 2022-06-01T20:38:39.159
+	at org.jacoco.agent.rt.internal_43f5073.core.internal.instr.InstrSupport.classReaderFor(InstrSupport.java:280)
+
+# Created on 2022-06-01T20:38:39.161
+	at org.jacoco.agent.rt.internal_43f5073.core.instr.Instrumenter.instrument(Instrumenter.java:75)
+
+# Created on 2022-06-01T20:38:39.163
+	at org.jacoco.agent.rt.internal_43f5073.core.instr.Instrumenter.instrument(Instrumenter.java:107)
+
+# Created on 2022-06-01T20:38:39.164
+	... 43 more
+
+# Created on 2022-06-01T20:38:39.166
+java.lang.instrument.IllegalClassFormatException: Error while instrumenting sun/util/resources/provider/LocaleDataProvider.
+
+# Created on 2022-06-01T20:38:39.168
+	at org.jacoco.agent.rt.internal_43f5073.CoverageTransformer.transform(CoverageTransformer.java:94)
+
+# Created on 2022-06-01T20:38:39.170
+	at java.instrument/java.lang.instrument.ClassFileTransformer.transform(ClassFileTransformer.java:244)
+
+# Created on 2022-06-01T20:38:39.172
+	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
+
+# Created on 2022-06-01T20:38:39.174
+	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:541)
+
+# Created on 2022-06-01T20:38:39.176
+	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
+
+# Created on 2022-06-01T20:38:39.177
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1103)
+
+# Created on 2022-06-01T20:38:39.179
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
+
+# Created on 2022-06-01T20:38:39.180
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
+
+# Created on 2022-06-01T20:38:39.183
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
+
+# Created on 2022-06-01T20:38:39.184
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClass(BuiltinClassLoader.java:621)
+
+# Created on 2022-06-01T20:38:39.186
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:632)
+
+# Created on 2022-06-01T20:38:39.187
+	at java.base/java.lang.Class.forName(Class.java:545)
+
+# Created on 2022-06-01T20:38:39.189
+	at java.base/java.util.ServiceLoader.loadProvider(ServiceLoader.java:859)
+
+# Created on 2022-06-01T20:38:39.191
+	at java.base/java.util.ServiceLoader$ModuleServicesLookupIterator.hasNext(ServiceLoader.java:1084)
+
+# Created on 2022-06-01T20:38:39.192
+	at java.base/java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1309)
+
+# Created on 2022-06-01T20:38:39.194
+	at java.base/java.util.ServiceLoader$3.hasNext(ServiceLoader.java:1393)
+
+# Created on 2022-06-01T20:38:39.196
+	at java.base/sun.util.resources.Bundles$2.run(Bundles.java:267)
+
+# Created on 2022-06-01T20:38:39.197
+	at java.base/sun.util.resources.Bundles$2.run(Bundles.java:265)
+
+# Created on 2022-06-01T20:38:39.199
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:318)
+
+# Created on 2022-06-01T20:38:39.200
+	at java.base/sun.util.resources.Bundles.loadBundleFromProviders(Bundles.java:264)
+
+# Created on 2022-06-01T20:38:39.202
+	at java.base/sun.util.resources.Bundles.findBundleOf(Bundles.java:201)
+
+# Created on 2022-06-01T20:38:39.203
+	at java.base/sun.util.resources.Bundles.findBundleOf(Bundles.java:160)
+
+# Created on 2022-06-01T20:38:39.205
+	at java.base/sun.util.resources.Bundles.loadBundleOf(Bundles.java:145)
+
+# Created on 2022-06-01T20:38:39.207
+	at java.base/sun.util.resources.Bundles.of(Bundles.java:106)
+
+# Created on 2022-06-01T20:38:39.208
+	at java.base/sun.util.resources.LocaleData$1.run(LocaleData.java:186)
+
+# Created on 2022-06-01T20:38:39.210
+	at java.base/sun.util.resources.LocaleData$1.run(LocaleData.java:183)
+
+# Created on 2022-06-01T20:38:39.212
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:318)
+
+# Created on 2022-06-01T20:38:39.213
+	at java.base/sun.util.resources.LocaleData.getBundle(LocaleData.java:183)
+
+# Created on 2022-06-01T20:38:39.215
+	at java.base/sun.util.resources.LocaleData.getNumberFormatData(LocaleData.java:178)
+
+# Created on 2022-06-01T20:38:39.217
+	at java.base/sun.util.locale.provider.LocaleResources.getNumberPatterns(LocaleResources.java:488)
+
+# Created on 2022-06-01T20:38:39.218
+	at java.base/sun.util.locale.provider.NumberFormatProviderImpl.getInstance(NumberFormatProviderImpl.java:184)
+
+# Created on 2022-06-01T20:38:39.220
+	at java.base/sun.util.locale.provider.NumberFormatProviderImpl.getNumberInstance(NumberFormatProviderImpl.java:151)
+
+# Created on 2022-06-01T20:38:39.221
+	at java.base/java.text.NumberFormat.getInstance(NumberFormat.java:976)
+
+# Created on 2022-06-01T20:38:39.223
+	at java.base/java.text.NumberFormat.getInstance(NumberFormat.java:962)
+
+# Created on 2022-06-01T20:38:39.225
+	at java.base/java.text.NumberFormat.getNumberInstance(NumberFormat.java:518)
+
+# Created on 2022-06-01T20:38:39.226
+	at java.base/java.util.Scanner.useLocale(Scanner.java:1270)
+
+# Created on 2022-06-01T20:38:39.228
+	at java.base/java.util.Scanner.<init>(Scanner.java:543)
+
+# Created on 2022-06-01T20:38:39.230
+	at java.base/java.util.Scanner.<init>(Scanner.java:595)
+
+# Created on 2022-06-01T20:38:39.231
+	at java.base/java.util.Scanner.<init>(Scanner.java:581)
+
+# Created on 2022-06-01T20:38:39.233
+	at org.apache.maven.surefire.booter.PpidChecker$ProcessInfoConsumer.execute(PpidChecker.java:300)
+
+# Created on 2022-06-01T20:38:39.234
+	at org.apache.maven.surefire.booter.PpidChecker.windows(PpidChecker.java:193)
+
+# Created on 2022-06-01T20:38:39.236
+	at org.apache.maven.surefire.booter.PpidChecker.isProcessAlive(PpidChecker.java:102)
+
+# Created on 2022-06-01T20:38:39.238
+	at org.apache.maven.surefire.booter.ForkedBooter$2.run(ForkedBooter.java:213)
+
+# Created on 2022-06-01T20:38:39.239
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+
+# Created on 2022-06-01T20:38:39.241
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+
+# Created on 2022-06-01T20:38:39.242
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+
+# Created on 2022-06-01T20:38:39.244
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+
+# Created on 2022-06-01T20:38:39.245
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+
+# Created on 2022-06-01T20:38:39.248
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+# Created on 2022-06-01T20:38:39.250
+Caused by: java.io.IOException: Error while instrumenting sun/util/resources/provider/LocaleDataProvider.
+
+# Created on 2022-06-01T20:38:39.252
+	at org.jacoco.agent.rt.internal_43f5073.core.instr.Instrumenter.instrumentError(Instrumenter.java:159)
+
+# Created on 2022-06-01T20:38:39.253
+	at org.jacoco.agent.rt.internal_43f5073.core.instr.Instrumenter.instrument(Instrumenter.java:109)
+
+# Created on 2022-06-01T20:38:39.255
+	at org.jacoco.agent.rt.internal_43f5073.CoverageTransformer.transform(CoverageTransformer.java:92)
+
+# Created on 2022-06-01T20:38:39.256
+	... 48 more
+
+# Created on 2022-06-01T20:38:39.258
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 61
+
+# Created on 2022-06-01T20:38:39.260
+	at org.jacoco.agent.rt.internal_43f5073.asm.ClassReader.<init>(ClassReader.java:195)
+
+# Created on 2022-06-01T20:38:39.261
+	at org.jacoco.agent.rt.internal_43f5073.asm.ClassReader.<init>(ClassReader.java:176)
+
+# Created on 2022-06-01T20:38:39.263
+	at org.jacoco.agent.rt.internal_43f5073.asm.ClassReader.<init>(ClassReader.java:162)
+
+# Created on 2022-06-01T20:38:39.265
+	at org.jacoco.agent.rt.internal_43f5073.core.internal.instr.InstrSupport.classReaderFor(InstrSupport.java:280)
+
+# Created on 2022-06-01T20:38:39.266
+	at org.jacoco.agent.rt.internal_43f5073.core.instr.Instrumenter.instrument(Instrumenter.java:75)
+
+# Created on 2022-06-01T20:38:39.268
+	at org.jacoco.agent.rt.internal_43f5073.core.instr.Instrumenter.instrument(Instrumenter.java:107)
+
+# Created on 2022-06-01T20:38:39.270
+	... 49 more
+

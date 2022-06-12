@@ -71,15 +71,15 @@ import java.sql.SQLException;
         }
     }
 
-    public Boolean isItAnAvailableSlot(long parkingNumber)
+    public boolean isItAnAvailableSlot(long parkingNumber)
     {
 <span class="fc" id="L76">        Boolean isAvaible = null;</span>
 
         try
-                (
-<span class="fc" id="L80">                        Connection          con = dataBaseConfig.getConnection();</span>
-<span class="fc" id="L81">                        PreparedStatement   ps  = con.prepareStatement(DBConstants.IS_PARKING_SPOT_AVAILABLE);</span>
-                )
+        (
+<span class="fc" id="L80">            Connection          con = dataBaseConfig.getConnection();</span>
+<span class="fc" id="L81">            PreparedStatement   ps  = con.prepareStatement(DBConstants.IS_PARKING_SPOT_AVAILABLE);</span>
+        )
         {
 <span class="fc" id="L84">            ps.setLong(1, parkingNumber);</span>
 
@@ -91,9 +91,34 @@ import java.sql.SQLException;
         }
 <span class="nc" id="L92">        catch (SQLException | ClassNotFoundException ex)</span>
         {
-<span class="nc" id="L94">            logger.error(&quot;Error is available slot&quot;, ex);</span>
+<span class="nc" id="L94">            logger.error(&quot;Error in available slot&quot;, ex);</span>
 <span class="fc" id="L95">        }</span>
 <span class="fc" id="L96">        return isAvaible;</span>
+    }
+
+    public int countSlotByType(ParkingType parkingType)
+    {
+<span class="fc" id="L101">        Integer numberOfSlot = null;</span>
+
+        try
+        (
+<span class="fc" id="L105">            Connection          con = dataBaseConfig.getConnection();</span>
+<span class="fc" id="L106">            PreparedStatement   ps  = con.prepareStatement(DBConstants.COUNT_SLOT_BY_TYPE);</span>
+        )
+        {
+<span class="fc" id="L109">            ps.setString(1, parkingType.name());</span>
+
+<span class="fc" id="L111">            try (ResultSet rs = ps.executeQuery())</span>
+            {
+<span class="fc" id="L113">                rs.next();</span>
+<span class="fc" id="L114">                numberOfSlot = rs.getInt(1);</span>
+            }
+        }
+<span class="nc" id="L117">        catch (SQLException | ClassNotFoundException ex)</span>
+        {
+<span class="nc" id="L119">            logger.error(&quot;Error in  countSlotByType&quot;, ex);</span>
+<span class="fc" id="L120">        }</span>
+<span class="fc" id="L121">        return numberOfSlot;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

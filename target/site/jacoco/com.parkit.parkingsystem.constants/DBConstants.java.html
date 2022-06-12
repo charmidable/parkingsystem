@@ -13,5 +13,7 @@
     public static final String IS_PARKING_SPOT_AVAILABLE = &quot;select AVAILABLE from parking where PARKING_NUMBER = ?&quot;;
 
     public static final String HAS_AN_OPEN_TICKET = &quot;select t.PARKING_NUMBER, t.ID, t.IN_TIME, p.TYPE from ticket t, parking p  where VEHICLE_REG_NUMBER = ? and OUT_TIME is null&quot;;
+
+    public static final String COUNT_SLOT_BY_TYPE = &quot;SELECT count(*) FROM test.parking WHERE TYPE = ?&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

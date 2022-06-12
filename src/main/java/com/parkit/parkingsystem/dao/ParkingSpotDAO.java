@@ -71,15 +71,15 @@ public class ParkingSpotDAO
         }
     }
 
-    public Boolean isItAnAvailableSlot(long parkingNumber)
+    public boolean isItAnAvailableSlot(long parkingNumber)
     {
         Boolean isAvaible = null;
 
         try
-                (
-                        Connection          con = dataBaseConfig.getConnection();
-                        PreparedStatement   ps  = con.prepareStatement(DBConstants.IS_PARKING_SPOT_AVAILABLE);
-                )
+        (
+            Connection          con = dataBaseConfig.getConnection();
+            PreparedStatement   ps  = con.prepareStatement(DBConstants.IS_PARKING_SPOT_AVAILABLE);
+        )
         {
             ps.setLong(1, parkingNumber);
 
@@ -91,8 +91,33 @@ public class ParkingSpotDAO
         }
         catch (SQLException | ClassNotFoundException ex)
         {
-            logger.error("Error is available slot", ex);
+            logger.error("Error in available slot", ex);
         }
         return isAvaible;
+    }
+
+    public int countSlotByType(ParkingType parkingType)
+    {
+        Integer numberOfSlot = null;
+
+        try
+        (
+            Connection          con = dataBaseConfig.getConnection();
+            PreparedStatement   ps  = con.prepareStatement(DBConstants.COUNT_SLOT_BY_TYPE);
+        )
+        {
+            ps.setString(1, parkingType.name());
+
+            try (ResultSet rs = ps.executeQuery())
+            {
+                rs.next();
+                numberOfSlot = rs.getInt(1);
+            }
+        }
+        catch (SQLException | ClassNotFoundException ex)
+        {
+            logger.error("Error in  countSlotByType", ex);
+        }
+        return numberOfSlot;
     }
 }

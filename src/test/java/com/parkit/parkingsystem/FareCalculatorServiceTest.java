@@ -8,9 +8,12 @@ import com.parkit.parkingsystem.service.FareCalculatorService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -135,121 +138,67 @@ public class FareCalculatorServiceTest
         assertEquals((24 * Fare.CAR_RATE_PER_HOUR), ticket.getPrice());
     }
 
-    @Test
-    public void calculateFareCarWithLessThan30Minutes()
+
+
+    @ParameterizedTest
+    @EnumSource(ParkingType.class)
+    public void calculateFareWithLessThan30Minutes(ParkingType parkingType)
     {
         Instant outTime = Instant.now();
         Instant inTime = outTime.minus(28, ChronoUnit.MINUTES);
-
-        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
-
         ticket.setInTime(Date.from(inTime));
         ticket.setOutTime(Date.from(outTime));
-        ticket.setParkingSpot(parkingSpot);
+        ticket.setParkingSpot(new ParkingSpot(1, parkingType, false));
         fareCalculatorService.calculateFare(ticket);
-        assertEquals(ticket.getPrice(), 0);
+        assertEquals(ticket.getPrice(), 0, "calculate fare for " + parkingType + " with less than 30 minutes failed");
     }
 
-    @Test
-    public void calculateFareBikeWithLessThan30Minutes()
-    {
-        Instant outTime = Instant.now();
-        Instant inTime = outTime.minus(28, ChronoUnit.MINUTES);
 
-        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE, false);
-
-        ticket.setInTime(Date.from(inTime));
-        ticket.setOutTime(Date.from(outTime));
-        ticket.setParkingSpot(parkingSpot);
-        fareCalculatorService.calculateFare(ticket);
-        assertEquals(ticket.getPrice(), 0);
-    }
-
-    @Test
-    public void calculateFareCarWithMoreThan30Minutes()
+    @ParameterizedTest
+    @EnumSource(ParkingType.class)
+    public void calculateFareWithMoreThan30Minutes(ParkingType parkingType)
     {
         Instant outTime = Instant.now();
         Instant inTime = outTime.minus(32, ChronoUnit.MINUTES);
 
-        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
+        ParkingSpot parkingSpot = new ParkingSpot(1, parkingType, false);
 
         ticket.setInTime(Date.from(inTime));
         ticket.setOutTime(Date.from(outTime));
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService.calculateFare(ticket);
-        assertTrue(ticket.getPrice() > 0);
-    }
-
-    @Test
-    public void calculateFareBikeWithMoreThan30Minutes()
-    {
-        Instant outTime = Instant.now();
-        Instant inTime = outTime.minus(32, ChronoUnit.MINUTES);
-
-        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE, false);
-
-        ticket.setInTime(Date.from(inTime));
-        ticket.setOutTime(Date.from(outTime));
-        ticket.setParkingSpot(parkingSpot);
-        fareCalculatorService.calculateFare(ticket);
-        assertTrue(ticket.getPrice() > 0);
+        assertTrue(ticket.getPrice() > 0, "calculate fare for " + parkingType + " with more than 30 minutes failed");
     }
 
 
-
-    @Test
-    public void calculateRecurrentUserFareCar()
+    @ParameterizedTest
+    @EnumSource(ParkingType.class)
+    public void calculateRecurrentUserFare(ParkingType parkingType)
     {
+        // création des valeurs d'entrée et sortie du parking correspondant à une durée de 10 jours
         Instant outTime = Instant.now();
         Instant inTime = outTime.minus(10, ChronoUnit.DAYS);
 
-        ParkingSpot parkingSpot1 = new ParkingSpot(1, ParkingType.CAR, false);
-        ParkingSpot parkingSpot2 = new ParkingSpot(2, ParkingType.CAR, false);
-
-        // non-recurrent user to compare
+        // fixe les valeurs d'entrée et de sortie du ticket
         ticket.setInTime(Date.from(inTime));
         ticket.setOutTime(Date.from(outTime));
-        ticket.setParkingSpot(parkingSpot1);
-        // isRecurrent is false
-        fareCalculatorService.calculateFare(ticket, false);
+        ticket.setParkingSpot(new ParkingSpot(4, parkingType, false));
 
-        // recurrent user
+        // Calcul et fixe du prix du ticket pour un utilisateur non récurent.
+        fareCalculatorService.calculateFare(ticket, false); // isRecurrent is false
+
+        // fixe avec les mêmes valeurs l'entrée et de sortie du ticket
         Ticket ticketRecurrentUser = new Ticket();
         ticketRecurrentUser.setInTime(Date.from(inTime));
         ticketRecurrentUser.setOutTime(Date.from(outTime));
-        ticketRecurrentUser.setParkingSpot(parkingSpot2);
+        ticketRecurrentUser.setParkingSpot(new ParkingSpot(5, parkingType, false));
+
         // isRecurrent is true
         fareCalculatorService.calculateFare(ticketRecurrentUser, true);
+        // on s'assure le ticket de l'utilisateur récurent est appliquée
+        assertNotEquals(ticketRecurrentUser.getPrice(), ticket.getPrice(), "la réduction utilisateur " +  parkingType +  " n'a pas été appliquée");
 
-
-        assertEquals(ticketRecurrentUser.getPrice(), ticket.getPrice() * 0.95);
-    }
-
-    @Test
-    public void calculateRecurrentUserFareBike()
-    {
-        Instant outTime = Instant.now();
-        Instant inTime = outTime.minus(10, ChronoUnit.DAYS);
-
-        ParkingSpot parkingSpot1 = new ParkingSpot(4, ParkingType.BIKE, false);
-        ParkingSpot parkingSpot2 = new ParkingSpot(5, ParkingType.BIKE, false);
-
-        // non-recurrent user to compare
-        ticket.setInTime(Date.from(inTime));
-        ticket.setOutTime(Date.from(outTime));
-        ticket.setParkingSpot(parkingSpot1);
-        // isRecurrent is false
-        fareCalculatorService.calculateFare(ticket, false);
-
-        // recurrent user
-        Ticket ticketRecurrentUser = new Ticket();
-        ticketRecurrentUser.setInTime(Date.from(inTime));
-        ticketRecurrentUser.setOutTime(Date.from(outTime));
-        ticketRecurrentUser.setParkingSpot(parkingSpot2);
-        // isRecurrent is true
-        fareCalculatorService.calculateFare(ticketRecurrentUser, true);
-
-        // compare recurrent and non-recurrent ticket price
-        assertEquals(ticketRecurrentUser.getPrice(), ticket.getPrice() * 0.95);
+        // on s'assure que le calcul de la réduction (moins 5%) est juste
+        assertEquals(ticketRecurrentUser.getPrice(), ticket.getPrice() * 0.95, "le calcul de la réduction utilisateur " +  parkingType +  " récurrent est faux");
     }
 }

@@ -54,7 +54,7 @@ public class ParkingService
                 ticket.setPrice(0);
                 ticket.setInTime(inTime);
                 ticket.setOutTime(null);
-                saveNewTicket(ticket);
+                ticketDAO.saveNewTicket(ticket);
                 System.out.println("Generated Ticket and saved in DB");
                 System.out.println("Please park your vehicle in spot number:" + parkingSpot.getId());
                 System.out.println("Recorded in-time for vehicle number:" + vehicleRegNumber + " is:" + inTime);
@@ -70,31 +70,7 @@ public class ParkingService
         }
     }
 
-    /**
-     * Check there is not already an open ticket with the same vehicle number
-     * otherwise throws an IllegalStateException.
-     * @param ticket
-     * @throws IllegalStateException
-     */
-    public void saveNewTicket(Ticket ticket) throws IllegalStateException
-    {
-        Ticket existingTicket;
 
-        // on s'assure que le véhicule n'a pas déjà un ticket en cours.
-        if((existingTicket = ticketDAO.hasAlreadyAnOpenTicket(ticket.getVehicleRegNumber())) != null)
-        {
-            existingTicket.getParkingSpot().setAvailable(true);
-
-            throw new IllegalStateException("This " + ticket.getParkingSpot().getParkingType()
-                                                    + " "
-                                                    + ticket.getVehicleRegNumber()
-                                                    + " is already in the parking at slot "
-                                                    + ticket.getParkingSpot().getId()
-            );
-        }
-        // puisque le véhicule n'as pas de ticket en cours on peut effectivement le sauvegarder dans la base de donnée
-        ticketDAO.saveTicket(ticket);
-    }
 
 
     private String getVehicleRegNumber() throws Exception

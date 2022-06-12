@@ -25,7 +25,7 @@ public class FareCalculatorService
 
         Duration parkDuration = Duration.between(ticket.getInTime().toInstant(), ticket.getOutTime().toInstant());
 
-//        double parkDurationInHours = parkDuration.toHours() + (double)parkDuration.toMinutesPart()/60;
+
         double parkDurationInHours = parkDuration.toHours() + ((double)(parkDuration.minusHours(parkDuration.toHours()).toMinutes())/60);
 
         if(parkDurationInHours > 0.5)
@@ -46,7 +46,7 @@ public class FareCalculatorService
                     throw new IllegalArgumentException("Unkown Parking Type");
             }
 
-            if(ticket.getPrice()!=0 && isRecurrentUser)
+            if(isRecurrentUser)
             {
                 System.out.println("As a recurring user you have just received a discount of 5%.");
                 ticket.setPrice(ticket.getPrice()*0.95);

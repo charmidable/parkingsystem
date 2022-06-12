@@ -13,4 +13,6 @@ public class DBConstants
     public static final String IS_PARKING_SPOT_AVAILABLE = "select AVAILABLE from parking where PARKING_NUMBER = ?";
 
     public static final String HAS_AN_OPEN_TICKET = "select t.PARKING_NUMBER, t.ID, t.IN_TIME, p.TYPE from ticket t, parking p  where VEHICLE_REG_NUMBER = ? and OUT_TIME is null";
+
+    public static final String COUNT_SLOT_BY_TYPE = "SELECT count(*) FROM test.parking WHERE TYPE = ?";
 }

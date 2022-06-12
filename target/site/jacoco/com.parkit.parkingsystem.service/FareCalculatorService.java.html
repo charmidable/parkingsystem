@@ -25,7 +25,7 @@ import java.time.Duration;
 
 <span class="fc" id="L26">        Duration parkDuration = Duration.between(ticket.getInTime().toInstant(), ticket.getOutTime().toInstant());</span>
 
-//        double parkDurationInHours = parkDuration.toHours() + (double)parkDuration.toMinutesPart()/60;
+//        double parkDurationInHours = parkDuration.toHours() + (double)parkDuration.toMinutesPart()/60; // from java 9 not 8
 <span class="fc" id="L29">        double parkDurationInHours = parkDuration.toHours() + ((double)(parkDuration.minusHours(parkDuration.toHours()).toMinutes())/60);</span>
 
 <span class="fc bfc" id="L31" title="All 2 branches covered.">        if(parkDurationInHours &gt; 0.5)</span>
@@ -58,4 +58,4 @@ import java.time.Duration;
         }
 <span class="fc" id="L59">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

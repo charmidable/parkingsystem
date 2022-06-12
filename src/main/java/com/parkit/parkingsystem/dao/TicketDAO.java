@@ -16,7 +16,7 @@ public class TicketDAO
 
     public DataBaseConfig dataBaseConfig = new DataBaseConfig();
 
-    public boolean saveTicket(Ticket ticket)
+    private boolean saveTicket(Ticket ticket)
     {
         Connection con = null;
         try
@@ -44,6 +44,31 @@ public class TicketDAO
     }
 
 
+    /**
+     * Check wether there is not already an open ticket with the same vehicle number
+     * otherwise throws an IllegalStateException.
+     * @param newTicket
+     * @throws IllegalStateException
+     */
+    public void saveNewTicket(Ticket newTicket) throws IllegalStateException
+    {
+        Ticket openedTicket;
+
+        // on s'assure que le véhicule n'a pas déjà un newTicket en cours.
+        if((openedTicket = hasAlreadyAnOpenTicket(newTicket.getVehicleRegNumber())) != null)
+        {
+            newTicket.getParkingSpot().setAvailable(true);
+
+            throw new IllegalStateException("This " + openedTicket.getParkingSpot().getParkingType()
+                                                    + " "
+                                                    + openedTicket.getVehicleRegNumber()
+                                                    + " is already in the parking at slot "
+                                                    + openedTicket.getParkingSpot().getId()
+            );
+        }
+        // puisque le véhicule n'as pas de newTicket en cours on peut effectivement le sauvegarder dans la base de donnée
+        saveTicket(newTicket);
+    }
 
 
 
@@ -112,10 +137,10 @@ public class TicketDAO
         boolean isRecurringUser = false;
 
         try
-                (
-                        Connection          con = dataBaseConfig.getConnection();
-                        PreparedStatement   ps  = con.prepareStatement(DBConstants.IS_RECURRING_USER)
-                )
+        (
+            Connection          con = dataBaseConfig.getConnection();
+            PreparedStatement   ps  = con.prepareStatement(DBConstants.IS_RECURRING_USER)
+        )
         {
             ps.setString(1, vehicleRegNumber);
 
@@ -137,10 +162,10 @@ public class TicketDAO
         Ticket ticket = null;
 
         try
-                (
-                        Connection          con = dataBaseConfig.getConnection();
-                        PreparedStatement   ps  = con.prepareStatement(DBConstants.HAS_AN_OPEN_TICKET)
-                )
+        (
+            Connection          con = dataBaseConfig.getConnection();
+            PreparedStatement   ps  = con.prepareStatement(DBConstants.HAS_AN_OPEN_TICKET)
+        )
         {
             ps.setString(1, vehicleRegNumber);
 
